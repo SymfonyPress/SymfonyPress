@@ -14,7 +14,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": "~5.3",
-        "symfony/http-foundation": "~2.2"
+        "symfony/http-kernel": "~2.2"
     },
     "extra": {
         "branch-alias": {
