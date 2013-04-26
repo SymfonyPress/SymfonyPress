@@ -1,0 +1,15 @@
+{
+    "name": "symfonypress/symfonypress",
+    "description": "Develop with the power of Symfony 2 for WordPress",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Josiah",
+            "email": "josiah@jjs.id.au"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    }
+}
