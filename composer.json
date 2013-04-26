@@ -2,6 +2,9 @@
     "name": "symfonypress/symfonypress",
     "description": "Develop with the power of Symfony 2 for WordPress",
     "license": "MIT",
+    "autoload": {
+        "psr-0": { "SymfonyPress": "src/" }
+    },
     "authors": [
         {
             "name": "Josiah",
@@ -10,6 +13,12 @@
     ],
     "minimum-stability": "dev",
     "require": {
-
+        "php": "~5.3",
+        "symfony/http-foundation": "~2.2"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.0-dev"
+        }
     }
 }
