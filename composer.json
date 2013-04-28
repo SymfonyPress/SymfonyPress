@@ -16,6 +16,9 @@
         "php": "~5.3",
         "symfony/http-kernel": "~2.2"
     },
+    "require-dev": {
+        "composer/composer": "~1.0"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "0.1.0-dev"
