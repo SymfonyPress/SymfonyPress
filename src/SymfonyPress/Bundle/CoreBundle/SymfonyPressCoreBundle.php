@@ -20,83 +20,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @category HttpKernel
+ * @category Bundle
  * @package  SymfonyPress
  * @author   Josiah <josiah@jjs.id.au>
  * @license  http://opensource.org/licenses/MIT The MIT License
  * @link     https://github.com/SymfonyPress/SymfonyPress
  */
 
-namespace SymfonyPress;
+namespace SymfonyPress\Bundle\CoreBundle;
 
-use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\HttpKernel\Kernel as SymfonyKernel;
-use SymfonyPress\Bundle\CoreBundle\SymfonyPressCoreBundle;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+use SymfonyPress\Plugin\PluginInterface;
 
 /**
- * SymfonyPress Kernel
+ * SymfonyPress Core Bundle
  *
- * @category HttpKernel
+ * This bundle provides the core functional interoperability between WordPress
+ * and Symfony.
+ *
+ * @category Bundle
  * @package  SymfonyPress
  * @author   Josiah <josiah@jjs.id.au>
  * @license  http://opensource.org/licenses/MIT The MIT License
  * @link     https://github.com/SymfonyPress/SymfonyPress
  */
-abstract class SymfonyPressKernel extends SymfonyKernel
+class SymfonyPressCoreBundle extends Bundle implements PluginInterface
 {
     /**
-     * Boots the kernel
-     * 
-     * @return void
-     */
-    public function boot()
-    {
-        parent::boot();
-        $this->initializePlugins();
-    }
-
-    /**
-     * Intializes the plugin bundles in the kernel
-     * 
-     * @return void
-     */
-    public function initializePlugins()
-    {
-        foreach ($this->getBundles() as $bundle) {
-            if (!$bundle instanceof PluginInterface) continue;
-
-            foreach ($bundle->getHooks() as $hook) {
-                add_hook(
-                    $hook->getTag(),
-                    $hook->getCallback(),
-                    $hook->getPriority(),
-                    $hook->getAcceptedArgs()
-                );
-            }
-        }
-    }
-
-    /**
-     * Returns an array of bundles to register
+     * Returns the symfonypress core bundle hooks
      * 
      * @return array
      */
-    public function registerBundles()
+    public function getHooks()
     {
         return [
-            new SymfonyPressCoreBundle(),
+            // new ServiceHook('template_redirect', $this->container, 'symfonypress.404_handler'),
         ];
-    }
-
-    /**
-     * Loads the container configuration
-     * 
-     * @param LoaderInterface $loader Configuration loader
-     * 
-     * @return void
-     */
-    public function registerContainerConfiguration(LoaderInterface $loader)
-    {
-        // $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
 }
